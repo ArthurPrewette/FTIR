@@ -1,9 +1,9 @@
-Attribute VB_Name = "Process-Spectra"
 Sub SpectraCorrectplot1()
-Attribute SpectraCorrectplot1.VB_ProcData.VB_Invoke_Func = " \n14"
 '
 ' SpectraCorrect-plot Macro
 '
+    Dim Template As String
+    Template = "C:\Users\lukep\AppData\Roaming\Microsoft\Templates\Charts\ffftir.crtx"
     Columns("A:B").Select
     Selection.Copy
     Sheets.Add After:=ActiveSheet
@@ -111,13 +111,6 @@ Attribute SpectraCorrectplot1.VB_ProcData.VB_Invoke_Func = " \n14"
         .TintAndShade = 0
     End With
     Selection.Font.Bold = True
-    Range("A1").Select
-    Selection.Font.Bold = False
-    Selection.Font.Bold = True
-    Selection.Font.Size = 12
-    Selection.Font.Size = 14
-    Selection.Font.Size = 16
-    Selection.Font.Size = 18
     Selection.Font.Size = 20
     Range("A2").Select
     ActiveCell.FormulaR1C1 = "Smoothing factor ^"
@@ -154,8 +147,6 @@ Attribute SpectraCorrectplot1.VB_ProcData.VB_Invoke_Func = " \n14"
         .PatternTintAndShade = 0
     End With
     Selection.Font.Size = 12
-    Selection.Font.Size = 14
-    Selection.Font.Size = 12
     Range("B1").Select
     ActiveCell.FormulaR1C1 = "WaveNumber"
     Columns("B:B").EntireColumn.AutoFit
@@ -188,10 +179,8 @@ Attribute SpectraCorrectplot1.VB_ProcData.VB_Invoke_Func = " \n14"
     ActiveWindow.ScrollRow = 1
     ActiveSheet.Shapes.AddChart2(240, xlXYScatterSmooth).Select
     ActiveChart.SetSourceData Source:=ActiveSheet.Range("$B$1:$AH$1869")
-    ActiveSheet.Shapes("Chart 1").IncrementLeft -111
-    ActiveSheet.Shapes("Chart 1").IncrementTop -87.75
     ActiveChart.ApplyChartTemplate ( _
-        "C:\Users\lukep\AppData\Roaming\Microsoft\Templates\Charts\ffftir.crtx")
+        Template)
     With ActiveSheet.Shapes("Chart 1").Fill
         .Visible = msoTrue
         .ForeColor.ObjectThemeColor = msoThemeColorBackground1
@@ -203,35 +192,83 @@ Attribute SpectraCorrectplot1.VB_ProcData.VB_Invoke_Func = " \n14"
     ActiveChart.Axes(xlCategory).Select
     ActiveChart.Axes(xlCategory).MaximumScale = 2200
     ActiveChart.Axes(xlCategory).MinimumScale = 1750
+    ActiveChart.Axes(xlCategory).MajorUnit = 50
+    Selection.MajorTickMark = xlInside
+    Selection.MinorTickMark = xlInside
     ActiveChart.Axes(xlValue).Select
-    ActiveChart.Axes(xlValue).MinimumScale = -0.01
-    ActiveChart.Axes(xlValue).MaximumScale = 0.02
-    ActiveChart.Axes(xlValue).MinimumScale = -0.05
-    ActiveChart.Axes(xlValue).MaximumScale = 0.04
-    ActiveChart.Axes(xlValue).MaximumScale = 0.1
-    ActiveChart.Axes(xlValue).MajorUnitIsAuto = True
-    ActiveChart.ChartArea.Select
-    ActiveSheet.Shapes("Chart 1").IncrementLeft 286.5
-    ActiveSheet.Shapes("Chart 1").IncrementTop -6.75
-    ActiveChart.Axes(xlValue).Select
-    ActiveChart.Axes(xlValue).MinimumScaleIsAuto = True
-    ActiveChart.Axes(xlValue).MaximumScaleIsAuto = True
     ActiveChart.Axes(xlValue).MinimumScale = -0.1
     ActiveChart.Axes(xlValue).MaximumScale = 0.2
-    ActiveChart.Axes(xlCategory).Select
-    Selection.MajorTickMark = xlInside
-    Selection.MinorTickMark = xlInside
-    ActiveChart.Axes(xlValue).Select
-    Selection.MajorTickMark = xlInside
-    Selection.MinorTickMark = xlInside
+    ActiveChart.Axes(xlValue).MajorUnit = 0.05
     ActiveChart.Axes(xlValue).CrossesAt = -0.1
-    ActiveChart.PlotArea.Select
-    ActiveChart.Legend.Select
-    Selection.Height = 27.477
-    Selection.Top = 229.397
+    Selection.MajorTickMark = xlInside
+    Selection.MinorTickMark = xlInside
+
+
+    
+    ActiveChart.Axes(xlCategory).AxisTitle.Select
+    ActiveChart.Axes(xlValue, xlPrimary).AxisTitle.Text = "Wavenumber (cm^-1)"
+    Selection.Format.TextFrame2.TextRange.Characters.Text = "Wavenumber (cm^-1)"
+    With Selection.Format.TextFrame2.TextRange.Characters(1, 18).ParagraphFormat
+        .TextDirection = msoTextDirectionLeftToRight
+        .Alignment = msoAlignCenter
+    End With
+    With Selection.Format.TextFrame2.TextRange.Characters(1, 10).Font
+        .BaselineOffset = 0
+        .Bold = msoFalse
+        .NameComplexScript = "+mn-cs"
+        .NameFarEast = "+mn-ea"
+        .Fill.Visible = msoTrue
+        .Fill.ForeColor.RGB = RGB(0, 0, 0)
+        .Fill.Transparency = 0
+        .Fill.Solid
+        .Size = 20
+        .Italic = msoFalse
+        .Kerning = 12
+        .Name = "+mn-lt"
+        .UnderlineStyle = msoNoUnderline
+        .Strike = msoNoStrike
+    End With
+    With Selection.Format.TextFrame2.TextRange.Characters(11, 8).Font
+        .BaselineOffset = 0
+        .Bold = msoFalse
+        .NameComplexScript = "+mn-cs"
+        .NameFarEast = "+mn-ea"
+        .Fill.Visible = msoTrue
+        .Fill.ForeColor.RGB = RGB(0, 0, 0)
+        .Fill.Transparency = 0
+        .Fill.Solid
+        .Size = 20
+        .Italic = msoFalse
+        .Kerning = 12
+        .Name = "+mn-lt"
+        .UnderlineStyle = msoNoUnderline
+        .Strike = msoNoStrike
+    End With
+    ActiveChart.Axes(xlValue).AxisTitle.Select
+    ActiveChart.Axes(xlValue, xlPrimary).AxisTitle.Text = "Absorbance (A.U.)"
+    Selection.Format.TextFrame2.TextRange.Characters.Text = "Absorbance (A.U.)"
+    With Selection.Format.TextFrame2.TextRange.Characters(1, 10).ParagraphFormat
+        .TextDirection = msoTextDirectionLeftToRight
+        .Alignment = msoAlignCenter
+    End With
+    With Selection.Format.TextFrame2.TextRange.Characters(1, 10).Font
+        .BaselineOffset = 0
+        .Bold = msoFalse
+        .NameComplexScript = "+mn-cs"
+        .NameFarEast = "+mn-ea"
+        .Fill.Visible = msoTrue
+        .Fill.ForeColor.RGB = RGB(0, 0, 0)
+        .Fill.Transparency = 0
+        .Fill.Solid
+        .Size = 20
+        .Italic = msoFalse
+        .Kerning = 12
+        .Name = "+mn-lt"
+        .UnderlineStyle = msoNoUnderline
+        .Strike = msoNoStrike
+    End With
+    ActiveChart.SetElement (msoElementPrimaryCategoryGridLinesMinorMajor)
     ActiveChart.ChartArea.Select
-    ActiveChart.Axes(xlValue).Select
-    ActiveChart.PlotArea.Select
-    ActiveChart.ChartArea.Select
+
 
 End Sub
