@@ -1,9 +1,13 @@
-Sub SpectraCorrectplot1()
+Sub SpectraCorrectplot()
 '
 ' SpectraCorrect-plot Macro
 '
     Dim Template As String
-    Template = "C:\Users\lukep\AppData\Roaming\Microsoft\Templates\Charts\ffftir.crtx"
+    Template = "" ' full path to your chart template goes here
+    
+    
+    
+    
     Columns("A:B").Select
     Selection.Copy
     Sheets.Add After:=ActiveSheet
