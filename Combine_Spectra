@@ -1,7 +1,6 @@
 #If you've never used python before, run the other .py file in the repo first to install these libraries. 
 import glob
 import pandas as pd
-import openpyxl
 import os
 os.chdir(
         #Path of spectra in .csv format. 
