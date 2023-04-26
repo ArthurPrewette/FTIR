@@ -1,4 +1,4 @@
-Attribute VB_Name = "Module11"
+Attribute VB_Name = "Process-Spectra"
 Sub SpectraCorrectplot1()
 Attribute SpectraCorrectplot1.VB_ProcData.VB_Invoke_Func = " \n14"
 '
