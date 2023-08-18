@@ -8,7 +8,7 @@ The following libraries must be installed:
 * pandas
 * glob
 
-How to use 
+Usage 
 ============
 Currently, the script can only be run on a single folder full of .CSV files at one time. I will add nested-folder searching/filemaking capabilities when I have the time. 
 The CSV files are sorted based on the numerical characters present in the filename.
